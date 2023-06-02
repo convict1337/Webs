@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <title>My Cool Terminal</title>
+  <style>
+    *, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    #terminaltext {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 20px;
+      font-family: monospace;
+      color: white;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <pre id="terminaltext"></pre>
+  <script>
+    function typeeffect(element, text, delay) {
+      let index = 0;
+      const type = () => {
+        if (index < text.length) {
+          element.innerHTML += text[index] === '\n' ? '<br>&gt;' : text[index];
+          index++;
+          setTimeout(type, delay);
+        }
+      };
+      type();
+    }
+    window.addEventListener('load', () => typeeffect(document.querySelector('#terminaltext'), '> Hello! ', 50));
+  </script>
+</body>
+</html>
